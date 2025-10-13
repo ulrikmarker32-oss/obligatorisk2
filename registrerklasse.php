@@ -36,10 +36,10 @@ if (isset($_POST ["registrerKlasseKnapp"]))
             else 
             {
              $sqlSetning="INSERT INTO Klasse (klassekode, klassenavn, studiumkode)
-VALUES('$klassekode', '$klassenavn', '$Studiumkode');";
+VALUES('$klassekode', '$klassenavn', '$studiumkode');";
             mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; registerer i data basen");
 
-            print ("Dette ble n&aring; registrert: $klassekode $Klassekavn $Studiumkode");
+            print ("Dette ble n&aring; registrert: $klassekode $klassekavn $studiumkode");
             }
         }
     }
