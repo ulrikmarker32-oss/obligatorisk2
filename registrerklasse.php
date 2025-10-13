@@ -39,7 +39,7 @@ if (isset($_POST ["registrerKlasseKnapp"]))
 VALUES('$klassekode', '$klassenavn', '$Studiumkode');";
             mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; registerer i data basen");
 
-            print ("Dette ble n&aring; registrert: $klassekode $Klassekavn $Studiumkode")
+            print ("Dette ble n&aring; registrert: $klassekode $Klassekavn $Studiumkode");
             }
         }
     }
