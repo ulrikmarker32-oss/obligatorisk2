@@ -11,7 +11,7 @@
   </form>
 
 <?php 
-if (isset($_POST) ["registrerKlasseKnapp"]))
+if (isset($_POST ["registrerKlasseKnapp"]))
     {
         $Klassekode=$_POST ["Klassekode"];
         $Klassenavn=$_POST ["Klassenavn"];
