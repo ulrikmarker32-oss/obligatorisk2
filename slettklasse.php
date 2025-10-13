@@ -11,7 +11,7 @@ if (isset($_POST ["slettKlasseKnapp"]))
 {
 include("db-tilkobling.php"); /* tilkobling til database-serveren utført og valg av database foretatt */
 $klassekode=$_POST ["klassekode"];
-$sqlSetning="DELETE FROM studium WHERE klassekode='$klassekode';";
+$sqlSetning="DELETE FROM klasse WHERE klassekode='$klassekode';";
 mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; slette data i databasen");
 /* SQL-setning sendt til database-serveren */
 print ("F&oslash;lgende studium er n&aring; slettet: $klassekode <br />");
