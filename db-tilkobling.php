@@ -1,6 +1,6 @@
 <?php 
 
-$host = ulmar4697('DB_HOST');
+$host = localhost('DB_HOST');
 $username = ulmar4697('DB_USER');
 $password = eaddulmar4697('DB_PASSWORD');
 $database = ulmar4697('DB_DATABASE');
