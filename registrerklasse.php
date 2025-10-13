@@ -19,15 +19,15 @@ if (isset($_POST ["registrerKlasseKnapp"]))
 
         if (!$Klassekode || !$Klassenavn || !$Studiumkode)
         {
-            print ("Alle feltene m&aring; fylles ut")
+            print ("Alle feltene m&aring; fylles ut");
         }
     else 
          {
             include("db-tilkobling.php");
 
             $sqlSetning="SELECT * FROM klasse WHERE klassekode='$klassekode';";
-            $sqlresultat=mysqli_query($db,$sqlSetning) or die ("Kunne ikke hente data fra databasen")
-            $antallRader=mysqli_num_rows($sqlresultat)
+            $sqlresultat=mysqli_query($db,$sqlSetning) or die ("Kunne ikke hente data fra databasen");
+            $antallRader=mysqli_num_rows($sqlresultat);
 
             if ($antallRader!=0)
             {
