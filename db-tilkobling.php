@@ -1,17 +1,11 @@
-<?php
-/* db-tilkobling.php */
-/* Riktig oppsett for USN Dokploy */
-
-$host = "mysql.dokploy.usn.no";   // Database-server
-$username = "ulmar4697";          // Ditt brukernavn
-$password = "eaddulmar4697";       // Passordet for databasen
-$database = "ulmar4697";          // Databasenavn (ofte lik brukernavn)
-
-// Opprett tilkobling
-$db = mysqli_connect($host, $username, $password, $database);
-
-// Sjekk om tilkobling fungerer
-if (!$db) {
-    die("Feil ved tilkobling til databasen: " . mysqli_connect_error());
-}
+<?php /* db-tilkobling */
+/*
+/* Programmet foretar tilkobling til database-server og valg av database
+*/
+$host = getenv('DB_HOST');
+$username = getenv('DB_USER');
+$password = getenv('DB_PASSWORD');
+$database = getenv('DB_DATABASE');
+$db=mysqli_connect($host,$username,$password,$database) or die ("ikke kontakt med database-server");
+/* tilkobling til database-serveren utført */
 ?>
