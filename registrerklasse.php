@@ -13,8 +13,8 @@
 <?php 
 if (isset($_POST ["registrerKlasseKnapp"]))
     {
-        $klassekode=$_POST ["llassekode"];
-        $klassenavn=$_POST ["llassenavn"];
+        $klassekode=$_POST ["klassekode"];
+        $klassenavn=$_POST ["klassenavn"];
         $studiumkode=$_POST ["studiumkode"];
 
         if (!$klassekode || !$klassenavn || !$studiumkode)
