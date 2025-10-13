@@ -13,11 +13,11 @@
 <?php 
 if (isset($_POST ["registrerKlasseKnapp"]))
     {
-        $Klassekode=$_POST ["Klassekode"];
-        $Klassenavn=$_POST ["Klassenavn"];
-        $Studiumkode=$_POST ["Studiumkode"];
+        $klassekode=$_POST ["llassekode"];
+        $klassenavn=$_POST ["llassenavn"];
+        $studiumkode=$_POST ["studiumkode"];
 
-        if (!$Klassekode || !$Klassenavn || !$Studiumkode)
+        if (!$klassekode || !$klassenavn || !$studiumkode)
         {
             print ("Alle feltene m&aring; fylles ut");
         }
