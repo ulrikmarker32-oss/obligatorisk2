@@ -35,7 +35,7 @@ if (isset($_POST ["registrerKlasseKnapp"]))
             }
             else 
             {
-             $sqlSetning="INSERT INTO Klasse (klassekode, klassenavn, studiumkode)
+             $sqlSetning="INSERT INTO klasse (klassekode, klassenavn, studiumkode)
 VALUES('$klassekode', '$klassenavn', '$studiumkode');";
             mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; registerer i data basen");
 
