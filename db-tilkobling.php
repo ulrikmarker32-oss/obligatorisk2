@@ -1,6 +1,6 @@
 <?php 
 
-$host = localhost('DB_HOST');
+$host = mysql.dokploy.usn.no('DB_HOST');
 $username = ulmar4697('DB_USER');
 $password = eaddulmar4697('DB_PASSWORD');
 $database = ulmar4697('DB_DATABASE');
