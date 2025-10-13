@@ -1,6 +1,7 @@
 <?php
 ?>
 <script src="funksjoner.js"> </script>
+
 <h3>Slett student <h3>
 <form method="post" action="" id="slettStudentSkjema" name="slettStudentSkjema">
 Brukernavn <input type="text" id="brukernavn" name="brukernavn" required /> <br/>
