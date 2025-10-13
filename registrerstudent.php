@@ -2,23 +2,24 @@
 ?> 
 
   <h3>Registrer ny student</h3>
-  <form method="post" action=""id="registrerKlasseKnapp" name="registrerKlasseKnapp">
-    Brukernavn <input type="text" id="klassekode" name="klassekode" required><br>
-    Fornavn <input type="text" id="klassenavn" name="klassenavn" required><br>
-    Etternavn<input type="text" id="studiumkode" name="studiumkode" required><br>
-    Klassekode<input type="text" id="studiumkode" name="studiumkode" required><br>
-    <input type="submit" value="Registrer klasse" id="registrerKlasseKnapp" name="registrerKlasseKnapp" />
+  <form method="post" action=""id="registrerStudentKnapp" name="registrerStudentKnapp">
+    Brukernavn <input type="text" id="brukernavn" name="brukernavn" required><br>
+    Fornavn <input type="text" id="fornavn" name="fornavn" required><br>
+    Etternavn<input type="text" id="etternavn" name="etternavn" required><br>
+    Klassekode<input type="text" id="klassekode" name="klassekode" required><br>
+    <input type="submit" value="Registrer student" id="registrerStudentKnapp" name="registrerStudentKnapp" />
     <input type="reset" value="Nullstill" id="nullstill" name="nullstill" /> <br />
   </form>
 
 <?php 
-if (isset($_POST ["registrerKlasseKnapp"]))
+if (isset($_POST ["registrerStudentKnapp"]))
     {
+        $brukernavn=$_POST ["brukernavn"];
+        $fornavn=$_POST ["fornavn"];
+        $etternavn=$_POST ["etternavn"];
         $klassekode=$_POST ["klassekode"];
-        $klassenavn=$_POST ["klassenavn"];
-        $studiumkode=$_POST ["studiumkode"];
 
-        if (!$klassekode || !$klassenavn || !$studiumkode)
+        if (!$brukernavn || !$fornavn|| !$etternavn || !$klassekode)
         {
             print ("Alle feltene m&aring; fylles ut");
         }
@@ -26,21 +27,21 @@ if (isset($_POST ["registrerKlasseKnapp"]))
          {
             include("db-tilkobling.php");
 
-            $sqlSetning="SELECT * FROM klasse WHERE klassekode='$klassekode';";
+            $sqlSetning="SELECT * FROM student WHERE brukernavn='$brukernavn';";
             $sqlresultat=mysqli_query($db,$sqlSetning) or die ("Kunne ikke hente data fra databasen");
             $antallRader=mysqli_num_rows($sqlresultat);
 
             if ($antallRader!=0)
             {
-                print ("Klassen er registrert fra f&oslashr");
+                print ("studenten er registrert fra f&oslashr");
             }
             else 
             {
-             $sqlSetning="INSERT INTO klasse (klassekode, klassenavn, studiumkode)
-VALUES('$klassekode', '$klassenavn', '$studiumkode');";
-            mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; registerer i data basen");
+             $sqlSetning="INSERT INTO student (brukernavn, fornavn, etternavn, klassekode) 
+             VALUES('$brukernavn', '$fornavn', '$etternavn', '$klassekode');";
+             mysqli_query($db,$sqlSetning) or die ("ikke mulig &aring; registerer i data basen");
 
-            print ("Dette ble n&aring; registrert: $klassekode $klassenavn $studiumkode");
+            print ("Dette ble n&aring; registrert: $brukernavn $fornavn $etternavn $klassekode");
             }
         }
     }
