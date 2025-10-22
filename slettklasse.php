@@ -10,7 +10,7 @@ Klassekode:
     <option value="">-- Velg klasse --</option>
     <?php
 include("db-tilkobling.php");
-$sqlSetning = "SELECT klassokode FROM klasse ORDER BY klassekode;";
+$sqlSetning = "SELECT klassekode FROM klasse ORDER BY klassekode;";
 $sqlResultat = mysqli_query($db, $sqlSetning) or die ("ikke mulig &aring; hente klassekoder");
 while ($rad = mysqli_fetch_array($sqlResultat)) {
   $klassekode = $rad["klassekode"];
