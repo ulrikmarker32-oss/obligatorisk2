@@ -4,7 +4,7 @@
 <script src="funksjoner.js"> </script>
 
 <h3>Slett student <h3>
-<form method="post" action="" id="slettStudentSkjema" name="slettStudentSkjema">
+<form method="post" action="" id="slettStudentSkjema" name="slettStudentSkjema" onsubmit="return bekreft()">
 Brukernavn <input type="text" id="brukernavn" name="brukernavn" required /> <br/>
 <input type="submit" value="Slett student" name="slettStudentKnapp" id="slettStudentKnapp" />
 </form>
