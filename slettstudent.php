@@ -13,7 +13,7 @@ include("db-tilkobling.php");
 $sqlSetning = "SELECT brukernavn FROM student ORDER BY brukernavn;";
 $sqlResultat = mysqli_query($db, $sqlSetning) or die ("Ikke mulig &aring; hente brukernavn");
 while ($rad = mysqli_fetch_array($sqlResultat)) {
-  $brukernavn = $rad["brukernavn"]
+  $brukernavn = $rad["brukernavn"];
     echo "<option value='$brukernavn'>$brukernavn</option>";
 }
 ?>
