@@ -7,6 +7,21 @@
     Fornavn <input type="text" id="fornavn" name="fornavn" required><br>
     Etternavn<input type="text" id="etternavn" name="etternavn" required><br>
     Klassekode<input type="text" id="klassekode" name="klassekode" required><br>
+
+    <select id="klassekode" name="klassekode" required>
+      <option value="">-- Velg klassekode --</option>
+      <?php
+      include("db-tilkobling.php");
+      $sqlSetning = "SELECT DISTINCT klassekode FROM klasse ORDER BY klassekode;";
+      $sqlResultat = mysqli_query($db, $sqlSetning) or die ("Ikke mulig &aring; klassekode");
+      while ($rad = mysqli_fetch_array($sqlResultat)) {
+        $klassekode = $rad["klassekode"];
+        echo "<option value= '$klassekode'>$klassekode</option>";
+      }
+      ?>
+    </select>
+    <br>
+    
     <input type="submit" value="Registrer student" id="registrerStudentKnapp" name="registrerStudentKnapp" />
     <input type="reset" value="Nullstill" id="nullstill" name="nullstill" /> <br />
   </form>
