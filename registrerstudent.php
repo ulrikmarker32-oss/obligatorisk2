@@ -6,9 +6,8 @@
     Brukernavn <input type="text" id="brukernavn" name="brukernavn" required><br>
     Fornavn <input type="text" id="fornavn" name="fornavn" required><br>
     Etternavn<input type="text" id="etternavn" name="etternavn" required><br>
-    Klassekode<input type="text" id="klassekode" name="klassekode" required><br>
-
-    <select id="klassekode" name="klassekode" required>
+      
+      <select id="klassekode" name="klassekode" required>
       <option value="">-- Velg klassekode --</option>
       <?php
       include("db-tilkobling.php");
