@@ -13,7 +13,7 @@ include("db-tilkobling.php");
     <option value="">-- Velg klasse --</option>
     <?php
     $sqlSetning = "SELECT klassekode FROM klasse ORDER BY klassekode;";
-    $sqlResultat = mysqli_query($db, $sqlSetning) or die("Ikke mulig å hente klassekoder");
+    $sqlResultat = mysqli_query($db, $sqlSetning) or die("Ikke mulig &aring; hente klassekoder");
 
     while ($rad = mysqli_fetch_array($sqlResultat)) {
       $klassekode = htmlspecialchars($rad["klassekode"]);
