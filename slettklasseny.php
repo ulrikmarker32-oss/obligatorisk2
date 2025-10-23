@@ -1,5 +1,7 @@
 <?php
 include("db-tilkobling.php");
+mysqli_set_charset($db, "utf8mb4"); // sikrer æøå
+
 ?>
 
 <script src="funksjoner.js"></script>
@@ -13,7 +15,7 @@ include("db-tilkobling.php");
     <?php
     $sqlSetning = "SELECT klassekode FROM klasse ORDER BY klassekode;";
     $sqlResultat = mysqli_query($db, $sqlSetning) or die("Ikke mulig å hente klassekoder");
-    
+
     while ($rad = mysqli_fetch_array($sqlResultat)) {
       $klassekode = htmlspecialchars($rad["klassekode"]);
       echo "<option value='$klassekode'>$klassekode</option>";
@@ -26,24 +28,34 @@ include("db-tilkobling.php");
 
 <?php
 if (isset($_POST["slettKlasseKnapp"])) {
-  include("db-tilkobling.php"); 
+  include("db-tilkobling.php");
+  mysqli_set_charset($db, "utf8mb4");
   $klassekode = mysqli_real_escape_string($db, $_POST["klassekode"]);
 
-  $sqlSetning = "DELETE FROM klasse WHERE klassekode='$klassekode';";
-  $resultat = mysqli_query($db, $sqlSetning);
+  // 🔍 Først sjekk om klassen har studenter
+  $sjekkSql = "SELECT COUNT(*) AS antall FROM student WHERE klassekode='$klassekode';";
+  $sjekkResultat = mysqli_query($db, $sjekkSql);
 
-  if ($resultat) {
-    print("Følgende klasse er nå slettet: <strong>$klassekode</strong><br>");
+  if (!$sjekkResultat) {
+    echo "<span style='color:red;'>Kunne ikke sjekke klassen i databasen. Prøv igjen senere.</span>";
   } else {
-    $feilmelding = mysqli_error($db);
-    
-    // Sjekk om feilen skyldes foreign key constraint (studenter tilknyttet)
-    if (str_contains($feilmelding, 'foreign key constraint')) {
-      print("<span style='color:red;'>Kan ikke slette klassen <strong>$klassekode</strong> fordi det finnes studenter registrert i denne klassen.</span><br>");
+    $rad = mysqli_fetch_assoc($sjekkResultat);
+    if ($rad['antall'] > 0) {
+      // 🚫 Klassen har studenter — gi en brukervennlig feilmelding
+      echo "<span style='color:red;'>Kan ikke slette klassen <strong>$klassekode</strong> fordi det finnes studenter registrert i denne klassen.</span><br>";
     } else {
-      print("<span style='color:red;'>En feil oppstod ved sletting av klasse. Vennligst prøv igjen eller kontakt administrator.</span><br>");
-      // (valgfritt) logg feilen for debugging:
-      // error_log($feilmelding);
+      // ✅ Klassen er tom — prøv å slette
+      $sqlSetning = "DELETE FROM klasse WHERE klassekode='$klassekode';";
+      $resultat = mysqli_query($db, $sqlSetning);
+
+      if ($resultat) {
+        echo "<span style='color:green;'>Følgende klasse er nå slettet: <strong>$klassekode</strong></span><br>";
+      } else {
+        // 😕 Uventet feil
+        echo "<span style='color:red;'>En feil oppstod ved sletting av klasse. Vennligst prøv igjen eller kontakt administrator.</span><br>";
+        // (valgfritt) logg teknisk info uten å vise det til brukeren:
+        error_log(mysqli_error($db));
+      }
     }
   }
 }
