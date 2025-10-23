@@ -48,7 +48,7 @@ if (isset($_POST["slettKlasseKnapp"])) {
       $resultat = mysqli_query($db, $sqlSetning);
 
       if ($resultat) {
-        print <Følgende klasse er nå slettet: <strong>$klassekode</strong><br>";
+        print "F&oelig;lgende klasse er nå slettet: <strong>$klassekode</strong><br>";
    
        
       }
