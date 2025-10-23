@@ -26,7 +26,7 @@ while ($rad = mysqli_fetch_array($sqlResultat)) {
 <?php
 if (isset($_POST["slettKlasseKnapp"])) {
   include("db-tilkobling.php"); 
-  $klassekode = ($db, $_POST["klassekode"]);
+ $klassekode=$_POST ["klassekode"];
 
   $sqlSetning = "DELETE FROM klasse WHERE klassekode='$klassekode';";
   $resultat = mysqli_query($db, $sqlSetning);
